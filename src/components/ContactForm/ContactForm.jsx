@@ -37,7 +37,7 @@ export class ContactForm extends Component {
             value={name}
             onChange={this.handleChange}
             required
-            placeholder="Enter contactname"
+            placeholder="Enter contact name"
             minLength={3}
           />
         </InputLabel>
