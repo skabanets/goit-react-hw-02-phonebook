@@ -32,3 +32,7 @@ export const DeleteContactBtn = styled.button`
   background-color: #f34c3f;
   color: white;
 `;
+
+export const FilterErrorMessage = styled.p`
+  color: red;
+`;

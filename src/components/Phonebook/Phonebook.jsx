@@ -3,6 +3,7 @@ import { Contacts } from 'components/Contacts/Contacts';
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { PhonebookWrapper, Subtitle, Title } from './Phonebook.styled';
+import { Filter } from 'components/Filter/Filter';
 
 export class Phonebook extends Component {
   state = {
@@ -38,8 +39,26 @@ export class Phonebook extends Component {
     }));
   };
 
+  filterChange = e => {
+    const { value } = e.target;
+    this.setState({ filter: value });
+  };
+
+  resetFiler = () => {
+    this.setState({ filter: '' });
+  };
+
+  getFileredContacts = () => {
+    const { contacts, filter } = this.state;
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+    const filteredContacts = this.getFileredContacts();
 
     return (
       <PhonebookWrapper>
@@ -47,11 +66,19 @@ export class Phonebook extends Component {
         <ContactForm addContact={this.addContact} />
 
         <Subtitle>Contacts ({contacts.length})</Subtitle>
-        <Filter />
+        <Filter
+          value={filter}
+          onChange={this.filterChange}
+          onClick={this.resetFiler}
+        />
         {contacts.length === 0 ? (
           <p>No contacts</p>
         ) : (
-          <Contacts contacts={contacts} onDelete={this.deleteContact} />
+          <Contacts
+            contacts={filteredContacts}
+            onDelete={this.deleteContact}
+            filteredContacts={filteredContacts}
+          />
         )}
       </PhonebookWrapper>
     );
