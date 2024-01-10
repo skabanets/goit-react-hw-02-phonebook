@@ -7,9 +7,10 @@ export const Form = styled.form`
   align-items: center;
   padding: 15px;
   border: 1px solid black;
-  width: 300px;
+  border-radius: 5px;
+  width: 400px;
   background-color: #d3e29d;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.7);
+  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.16); */
 `;
 
 export const InputLabel = styled.label`
@@ -30,7 +31,7 @@ export const FormButton = styled.button`
   padding: 8px 16px;
   color: white;
   background-color: #8ab446;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid green;
   font-weight: 500;
 

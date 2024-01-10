@@ -10,6 +10,8 @@ export class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    const { name, number } = this.state;
+    this.props.addContact(name, number);
     this.setState({
       name: '',
       number: '',
@@ -18,6 +20,7 @@ export class ContactForm extends Component {
 
   handleChange = e => {
     const { name, value } = e.target;
+
     this.setState({ [name]: value });
   };
 
@@ -33,6 +36,9 @@ export class ContactForm extends Component {
             name="name"
             value={name}
             onChange={this.handleChange}
+            required
+            placeholder="Enter contactname"
+            minLength={3}
           />
         </InputLabel>
         <InputLabel>
@@ -42,6 +48,10 @@ export class ContactForm extends Component {
             name="number"
             value={number}
             onChange={this.handleChange}
+            required
+            minLength={9}
+            maxLength={13}
+            placeholder="Enter phone number"
           />
         </InputLabel>
         <FormButton>Add contact</FormButton>
